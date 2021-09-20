@@ -2,7 +2,11 @@ import React from 'react'
 
 export default function SearchBar(props) {
 
-  const { inStockOnly } = props;
+  const { inStockOnly, filterText } = props;
+
+  const handleFilterTextChange = (e) => {
+    props.onFilterTextChange(e.target.value)
+  }
 
   const handleInStockChange = (e) => {
     props.onInStockChange(e.target.checked)
@@ -10,7 +14,12 @@ export default function SearchBar(props) {
 
   return (
     <form>
-      <input type="text" placeholder="Search..."/>
+      <input 
+      type="text" 
+      placeholder="Search..."
+      value={filterText}
+      onChange={handleFilterTextChange}
+      />
       <p>
         <input type="checkbox" 
         checked={inStockOnly}
